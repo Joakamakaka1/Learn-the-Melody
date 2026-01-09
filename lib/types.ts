@@ -84,10 +84,7 @@ export interface SimplifiedAlbum {
   artists: SimplifiedArtist[];
 }
 
-export interface Album extends SimplifiedAlbum {
-  // Full album might have more fields like tracks, copyrights, etc.
-  // extending simply for now based on provided response structure
-}
+export type Album = SimplifiedAlbum;
 
 export interface Track {
   album: SimplifiedAlbum;
