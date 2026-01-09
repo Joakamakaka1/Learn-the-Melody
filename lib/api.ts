@@ -9,7 +9,7 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 // Constants & Configuration
 // ============================================================================
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
+const API_BASE_URL = "/api/proxy";
 
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,

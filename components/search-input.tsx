@@ -5,6 +5,7 @@
 
 import React from "react";
 import { Track } from "@/lib/types";
+import Image from "next/image";
 
 interface SearchInputProps {
   query: string;
@@ -59,9 +60,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               className="p-4 hover:bg-zinc-50 dark:hover:bg-zinc-800 cursor-pointer flex items-center gap-4 transition-colors"
             >
               {track.album.images.length > 0 ? (
-                <img
+                <Image
                   src={track.album.images[0].url}
                   alt={track.album.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-md object-cover shadow-sm"
                 />
               ) : (

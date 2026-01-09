@@ -7,6 +7,7 @@ import React from "react";
 import { Track, SongGenres } from "@/lib/types";
 import { HyperText } from "@/components/ui/hyper-text";
 import { GenreBadge } from "./genre-badge";
+import Image from "next/image";
 
 interface TrackDetailCardProps {
   track: Track;
@@ -28,10 +29,13 @@ export const TrackDetailCard: React.FC<TrackDetailCardProps> = ({
       <div className="flex flex-col gap-8">
         <div className="relative z-10 flex flex-col lg:flex-row gap-8 items-start lg:items-center">
           {track.album.images.length > 0 && (
-            <img
+            <Image
               src={track.album.images[0].url}
               alt={track.album.name}
+              width={256}
+              height={256}
               className="w-48 h-48 lg:w-64 lg:h-64 rounded-2xl shadow-xl object-cover"
+              priority
             />
           )}
 
