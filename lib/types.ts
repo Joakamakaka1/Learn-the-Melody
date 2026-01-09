@@ -218,6 +218,7 @@ export interface SimplifiedAudiobook {
 // ============================================================================
 
 export type SpotifySearchResponse = Track[];
+export type SongGenres = string[];
 
 // ============================================================================
 // Error Types
