@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useTrackSearch } from "@/hooks/use-track-search";
 import { SearchInput } from "@/components/search-input";
 import { TrackDetailCard } from "@/components/track-detail-card";
+import { AuroraText } from "@/components/ui/aurora-text";
 
 export default function Home() {
   const [selectedPlatform, setSelectedPlatform] = useState<
@@ -70,7 +71,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center gap-12 flex-1 w-full max-w-2xl">
           <div className="flex flex-col items-center gap-6 text-center">
             <h1 className="font-mono text-4xl lg:text-6xl font-bold tracking-tighter text-black dark:text-zinc-50">
-              Learn the Melody
+              Learn the <AuroraText>Melody</AuroraText>
             </h1>
             <p className="max-w-md text-lg text-zinc-600 dark:text-zinc-400">
               Descubre los detalles de tus canciones favoritas.

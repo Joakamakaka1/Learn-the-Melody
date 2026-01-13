@@ -8,6 +8,7 @@ import { Track, SongGenres } from "@/lib/types";
 import { HyperText } from "@/components/ui/hyper-text";
 import { GenreBadge } from "./genre-badge";
 import Image from "next/image";
+import { NumberTicker } from "@/components/ui/number-ticker";
 
 interface TrackDetailCardProps {
   track: Track;
@@ -141,11 +142,20 @@ export const TrackDetailCard: React.FC<TrackDetailCardProps> = ({
           disabled={loadingGenres || genres.length > 0}
           className="flex-1 py-4 px-6 rounded-2xl font-medium transition-all duration-200 bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          {loadingGenres
-            ? "Cargando..."
-            : genres.length > 0
-            ? "Géneros Cargados"
-            : "Obtener Géneros"}
+          {loadingGenres ? (
+            <div className="flex items-center gap-2">
+              <span className="text-zinc-400 animate-pulse">Analizando...</span>
+              <NumberTicker
+                value={100}
+                className="text-zinc-500 dark:text-zinc-400"
+              />
+              <span className="text-zinc-400">%</span>
+            </div>
+          ) : genres.length > 0 ? (
+            "Géneros Cargados"
+          ) : (
+            "Obtener Géneros"
+          )}
         </button>
         <a
           href={track.external_urls.spotify}
