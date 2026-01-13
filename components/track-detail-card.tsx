@@ -110,8 +110,8 @@ export const TrackDetailCard: React.FC<TrackDetailCardProps> = ({
             <span className="text-zinc-500 dark:text-zinc-400">
               Popularidad
             </span>
-            <div className="items-center gap-3 hidden sm:flex">
-              <div className="w-24 h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
+            <div className="flex items-center gap-3">
+              <div className="flex-1 sm:w-24 h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-green-500 rounded-full"
                   style={{ width: `${track.popularity}%` }}
@@ -135,19 +135,23 @@ export const TrackDetailCard: React.FC<TrackDetailCardProps> = ({
         </div>
       </div>
 
-      <div className="relative z-10 flex gap-4">
+      <div className="relative z-10 flex flex-col sm:flex-row gap-4">
         <button
           onClick={() => onFetchGenres(track.id)}
-          disabled={loadingGenres}
-          className="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-200 bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          disabled={loadingGenres || genres.length > 0}
+          className="flex-1 py-4 px-6 rounded-2xl font-medium transition-all duration-200 bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          {loadingGenres ? "Cargando..." : "Obtener Géneros"}
+          {loadingGenres
+            ? "Cargando..."
+            : genres.length > 0
+            ? "Géneros Cargados"
+            : "Obtener Géneros"}
         </button>
         <a
           href={track.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 bg-[#1DB954] hover:bg-[#1ed760] text-white font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-transform shadow-lg"
+          className="flex-1 bg-[#1DB954] hover:bg-[#1ed760] text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-2 transition-transform shadow-lg"
         >
           <svg
             viewBox="0 0 24 24"

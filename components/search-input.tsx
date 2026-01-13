@@ -28,7 +28,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 w-full max-w-lg relative">
-      <div className="flex gap-4 w-full relative z-20">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full relative z-20">
         <input
           className="border border-zinc-200 dark:border-zinc-800 p-4 rounded-xl text-lg flex-1 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-sm focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-all"
           type="text"
@@ -44,7 +44,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           autoComplete="off"
         />
         <button
-          onClick={onSearch}
+          onClick={() => onSearch()}
           className="bg-black dark:bg-white text-white dark:text-black p-4 rounded-xl font-medium hover:opacity-90 transition-opacity cursor-pointer whitespace-nowrap"
         >
           Buscar

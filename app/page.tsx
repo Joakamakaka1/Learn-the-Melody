@@ -8,7 +8,7 @@
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { fetchGenres } from "@/lib/services/genre-service";
 import { SongGenres } from "@/lib/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTrackSearch } from "@/hooks/use-track-search";
 import { SearchInput } from "@/components/search-input";
 import { TrackDetailCard } from "@/components/track-detail-card";
@@ -32,6 +32,13 @@ export default function Home() {
     selectTrack,
   } = useTrackSearch();
 
+  const currentTrack = results?.[0];
+
+  // Reset genres if the current track ID changes
+  useEffect(() => {
+    setGenres([]);
+  }, [currentTrack?.id]);
+
   // Helper for duration formatting
   const formatDuration = (ms: number) => {
     const minutes = Math.floor(ms / 60000);
@@ -40,6 +47,7 @@ export default function Home() {
   };
 
   const handleFetchGenres = async (id: string) => {
+    if (genres.length > 0) return; // Don't fetch if already have genres
     setLoadingGenres(true);
     try {
       const data = await fetchGenres(id);
@@ -51,15 +59,13 @@ export default function Home() {
     }
   };
 
-  const currentTrack = results?.[0];
-
   return (
     <div className="min-h-screen w-full flex flex-col bg-zinc-50 dark:bg-black transition-colors">
       <header className="w-full flex justify-end p-6 lg:px-16">
         <AnimatedThemeToggler />
       </header>
 
-      <main className="flex-1 flex w-full flex-col lg:flex-row items-center justify-center gap-8 py-10 px-6 lg:px-16 overflow-y-auto">
+      <main className="flex-1 flex w-full flex-col lg:flex-row items-center justify-center gap-12 py-6 sm:py-10 px-4 sm:px-6 lg:px-16 overflow-y-auto">
         {/* Contenido izquierdo (Buscador) */}
         <div className="flex flex-col items-center justify-center gap-12 flex-1 w-full max-w-2xl">
           <div className="flex flex-col items-center gap-6 text-center">

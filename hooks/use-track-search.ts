@@ -45,8 +45,9 @@ export function useTrackSearch() {
    * @param {string} [optionalQuery] - An optional query to use instead of the current state query.
    */
   const handleSearch = async (optionalQuery?: string) => {
-    const searchQuery = optionalQuery || query;
-    if (!searchQuery) return;
+    const searchQuery =
+      typeof optionalQuery === "string" ? optionalQuery : query;
+    if (!searchQuery || typeof searchQuery !== "string") return;
 
     setLoading(true);
     setShowSuggestions(false);

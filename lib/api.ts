@@ -13,7 +13,7 @@ const API_BASE_URL = "/api/proxy";
 
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     "Content-Type": "application/json",
   },

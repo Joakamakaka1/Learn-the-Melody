@@ -17,6 +17,11 @@ const searchCache = new Map<string, SpotifySearchResponse>();
 export const searchTracks = async (
   query: string
 ): Promise<SpotifySearchResponse> => {
+  if (typeof query !== "string") {
+    console.error("searchTracks error: query is not a string", query);
+    return [];
+  }
+
   const cacheKey = `search:${query.toLowerCase().trim()}`;
 
   if (searchCache.has(cacheKey)) {
